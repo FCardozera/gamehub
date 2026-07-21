@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: gamehub
+  profiles:
+    # Active profile (development, produce, test. Default: development)
+    active: profile
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gamehub
+    # Add username datasource
+    username: user
+    # Add password datasource
+    password: password
+
+
+
+
