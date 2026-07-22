@@ -3,6 +3,9 @@ package io.github.fcardozera.gamehub.player;
 import java.time.Instant;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Generated;
+import org.hibernate.generator.EventType;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,7 +32,8 @@ public class Player {
     @Column(nullable = false, unique = true, length = 32)
     private String nickname;
 
-    @Column(name = "created_at", nullable = false, insertable = false, updatable = false)
+    @Generated(event = EventType.INSERT)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
     public Player(String email, String passwordHash, String nickname) {
