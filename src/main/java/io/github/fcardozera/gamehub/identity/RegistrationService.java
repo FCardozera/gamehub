@@ -3,6 +3,7 @@ package io.github.fcardozera.gamehub.identity;
 import io.github.fcardozera.gamehub.identity.dto.PlayerResponse;
 import io.github.fcardozera.gamehub.identity.dto.RegisterRequest;
 import io.github.fcardozera.gamehub.identity.exception.EmailAlreadyUsedException;
+import io.github.fcardozera.gamehub.identity.exception.NicknameAlreadyUsedException;
 import io.github.fcardozera.gamehub.player.Player;
 import io.github.fcardozera.gamehub.player.PlayerRepository;
 
@@ -26,18 +27,21 @@ public class RegistrationService {
     public PlayerResponse register(RegisterRequest request) {
         String email = request.email().trim().toLowerCase(); // Design decision: emails are case-insensitive, so we
                                                              // normalize them to lowercase
+        String nickname = request.nickname().trim(); // Design decision: nicknames are case-sensitive, so we keep the
+                                                     // original case
 
         if (playerRepository.existsByEmail(email)) {
             throw new EmailAlreadyUsedException(email);
         }
 
-        // TODO: apply the same verification to the nickname, with new exception, no
-        // need to normalize it, but trim it to avoid leading/trailing spaces
+        if (playerRepository.existsByNickname(nickname)) {
+            throw new NicknameAlreadyUsedException(nickname);
+        }
 
         Player player = new Player(
                 email,
                 passwordEncoder.encode(request.password()),
-                request.nickname().trim());
+                nickname);
 
         return PlayerResponse.from(playerRepository.save(player));
     }
