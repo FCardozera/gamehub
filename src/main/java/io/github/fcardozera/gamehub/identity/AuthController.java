@@ -1,6 +1,7 @@
 package io.github.fcardozera.gamehub.identity;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import jakarta.validation.Valid;
 import io.github.fcardozera.gamehub.identity.dto.RegisterRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -33,8 +35,8 @@ public class AuthController {
             and the password is stored as a hash.""")
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Player successfully registered"),
-            @ApiResponse(responseCode = "400", description = "Invalid request payload", content = @Content),
-            @ApiResponse(responseCode = "409", description = "Email or nickname already in use", content = @Content)
+            @ApiResponse(responseCode = "400", description = "Invalid request payload", content = @Content(schema = @Schema(implementation = ProblemDetail.class))),
+            @ApiResponse(responseCode = "409", description = "Email or nickname already in use", content = @Content(schema = @Schema(implementation = ProblemDetail.class)))
     })
     public PlayerResponse register(@Valid @RequestBody RegisterRequest request) {
         return registrationService.register(request);
