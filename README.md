@@ -152,26 +152,27 @@ Significant technical decisions are documented in [`docs/adr/`](docs/adr/).
 
 **v1 — Foundation**
 
-- [x] Project skeleton and containerised PostgreSQL
-- [x] Versioned database schema (Flyway)
-- [ ] Registration and login with JWT
-- [ ] Player profile endpoints
-- [ ] Integration tests with Testcontainers
-- [ ] OpenAPI documentation
+- **[X]** Project skeleton and containerised PostgreSQL
+- **[X]** Versioned database schema (Flyway)
+- **[X]** Registration
+- **[ ]** Login with JWT
+- **[ ]** Player profile endpoints
+- **[X]** Integration tests with Testcontainers
+- **[ ]** OpenAPI documentation
 
 **v2 — Distributed systems**
 
-- [ ] Matchmaking queue
-- [ ] Match results and Elo rating
-- [ ] Leaderboard
-- [ ] Event-driven statistics processing
-- [ ] Idempotent purchases
+- **[ ]** Matchmaking queue
+- **[ ]** Match results and Elo rating
+- **[ ]** Leaderboard
+- **[ ]** Event-driven statistics processing
+- **[ ]** Idempotent purchases
 
 **v3 — Production**
 
-- [ ] Continuous deployment
-- [ ] Metrics and dashboards
-- [ ] Load test results
+- **[ ]** Continuous deployment
+- **[ ]** Metrics and dashboards
+- **[ ]** Load test results
 
 ---
 

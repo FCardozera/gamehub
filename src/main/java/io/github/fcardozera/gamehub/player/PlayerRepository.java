@@ -6,4 +6,6 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
     boolean existsByEmail(String email);
 
     boolean existsByNickname(String nickname);
+
+    Player findByEmail(String email);
 }
